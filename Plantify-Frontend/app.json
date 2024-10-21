@@ -9,6 +9,12 @@
         {
           "photosPermission": "L'application accède à vos photos pour identifier les plantes."
         }
+      ],
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera."
+        }
       ]
     ],
     "ios": {

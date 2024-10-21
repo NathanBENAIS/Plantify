@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView, ActivityIndicator } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
-import { Buffer } from 'buffer';
 
 const PLANT_ID_API_KEY = 'VgiAr1SSWrdrVorjrmFkuhDpCkAOxTWGHhNDFNVZa6fcMR6mdg';
 
@@ -27,6 +26,25 @@ export default function PlantScan() {
       }
     } catch (err) {
       setError('Erreur lors de la sélection de l\'image');
+    }
+  };
+
+  const scanImage = async () => {
+    try {
+      let result = await ImagePicker.launchCameraAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        allowsEditing: true,
+        aspect: [4, 3],
+        quality: 1,
+        base64: true,
+      });
+
+      if (!result.canceled) {
+        setImage(result.assets[0].uri);
+        await identifyPlant(result.assets[0].base64);
+      }
+    } catch (err) {
+      setError('Erreur lors de la capture de l\'image');
     }
   };
 
@@ -84,21 +102,32 @@ export default function PlantScan() {
   return (
     <ScrollView style={styles.container}>
       <Text style={styles.title}>Identification de Plantes</Text>
+      
+      {/* Bouton pour télécharger une image */}
       <TouchableOpacity style={styles.uploadButton} onPress={pickImage}>
         <Text style={styles.uploadButtonText}>Télécharger une image</Text>
       </TouchableOpacity>
+
+      {/* Bouton pour scanner une image via la caméra */}
+      <TouchableOpacity style={styles.scanButton} onPress={scanImage}>
+        <Text style={styles.uploadButtonText}>Scanner une plante</Text>
+      </TouchableOpacity>
+
       {image && <Image source={{ uri: image }} style={styles.uploadedImage} />}
+      
       {loading && (
         <View style={styles.loadingContainer}>
           <ActivityIndicator size="large" color="#3498db" />
           <Text style={styles.loadingText}>Identification en cours...</Text>
         </View>
       )}
+      
       {error && (
         <View style={styles.errorContainer}>
           <Text style={styles.errorText}>{error}</Text>
         </View>
       )}
+      
       {identificationResult && !loading && (
         <View style={styles.resultContainer}>
           <Text style={styles.resultTitle}>Résultat de l'identification :</Text>
@@ -135,6 +164,12 @@ const styles = StyleSheet.create({
   },
   uploadButton: {
     backgroundColor: '#3498db',
+    padding: 15,
+    borderRadius: 5,
+    marginBottom: 20,
+  },
+  scanButton: {
+    backgroundColor: '#27ae60',
     padding: 15,
     borderRadius: 5,
     marginBottom: 20,
