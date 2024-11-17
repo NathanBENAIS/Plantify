@@ -3,9 +3,10 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 
 import Home from '../Pages/Home';
-import PlantScan from '../Pages/PlantScan';
-import Upload from '../Pages/Upload';
-import ProductList from '../Pages/ProductList'
+import Advice from '../Pages/Advice';
+import Search from '../Pages/Search';
+import Account from '../Pages/Account';
+import DetailProduct from '../Pages/DetailProduct';
 
 const Tab = createBottomTabNavigator();
 
@@ -18,12 +19,12 @@ export default function MainTabs() {
 
           if (route.name === 'Home') {
             iconName = focused ? 'home' : 'home-outline';
-          } else if (route.name === 'Scan') {
-            iconName = focused ? 'scan' : 'scan-outline';
-          } else if (route.name === 'Upload') {
-            iconName = focused ? 'cloud-upload' : 'cloud-upload-outline';
-          } else if (route.name === 'ProductList') {
-            iconName = focused ? 'list' : 'list-outline';
+          } else if (route.name === 'Advice') {
+            iconName = focused ? 'information-circle' : 'information-circle-outline';
+          } else if (route.name === 'Search') {
+            iconName = focused ? 'search' : 'search-outline';
+          } else if (route.name === 'Account') {
+            iconName = focused ? 'person' : 'person-outline';
           }
 
           return <Ionicons name={iconName} size={size} color={color} />;
@@ -44,9 +45,11 @@ export default function MainTabs() {
       })}
     >
       <Tab.Screen name="Home" component={Home} options={{ headerShown: false }} />
-      <Tab.Screen name="Scan" component={PlantScan} options={{ headerShown: false }} />
-      <Tab.Screen name="Upload" component={Upload} options={{ headerShown: false }} />
-      <Tab.Screen name="ProductList" component={ProductList} options={{ headerShown: false }} />
+      <Tab.Screen name="Advice" component={Advice} options={{ headerShown: false }} />
+      <Tab.Screen name="Search" component={Search} options={{ headerShown: false }} />
+      <Tab.Screen name="Account" component={Account} options={{ headerShown: false }} />
+      <Tab.Screen name="DetailProduct" component={DetailProduct}   options={{ headerShown: false, tabBarButton: () => null  }} 
+/>
     </Tab.Navigator>
   );
 }

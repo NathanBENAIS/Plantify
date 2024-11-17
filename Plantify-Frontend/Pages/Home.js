@@ -1,21 +1,20 @@
 import React from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
+import { ScrollView, View, StyleSheet } from 'react-native';
+import PlantScanButtons from '../components/PlantScanButtons';
+import PlantCarousel from '../components/PlantCarousel';
 
 export default function Home({ navigation }) {
   return (
-    <View style={styles.container}>
-      <Text>Welcome to the Home Screen!</Text>
-      <Button
-        title="Go to PlantScan"
-        onPress={() => navigation.navigate('PlantScan')}
-      />
-    </View>
+    <ScrollView contentContainerStyle={styles.container}>
+      <PlantCarousel />
+      <PlantScanButtons />
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flexGrow: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
