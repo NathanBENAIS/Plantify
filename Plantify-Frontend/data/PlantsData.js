@@ -2,7 +2,7 @@ export const PLANTS_DATA = [
     {
       id: '1',
       name: 'Rose',
-      scientificName: 'Rosa',
+      scientificName: 'Rosa × odorata',
       description: 'La rose est une fleur élégante et parfumée, symbole de l\'amour et de la passion. Ses pétales délicats et son parfum envoûtant en font l\'une des fleurs les plus appréciées au monde.',
       sunshine: 'Plein soleil',
       difficulty: 'Modérée',

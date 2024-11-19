@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { View, Dimensions, StyleSheet, Image, Platform } from 'react-native';
-import Carousel from 'react-native-snap-carousel';
+import Carousel, { ParallaxImage } from 'react-native-snap-carousel';
 
 const { width: screenWidth } = Dimensions.get('window');
 
@@ -32,10 +32,10 @@ const PLANTS_DATA = [
   },
 ];
 
-const PlantCarousel = ({ data = PLANTS_DATA }) => {
+const PlantCarousel = () => {
   const carouselRef = useRef(null);
 
-  const renderItem = ({ item }) => {
+  const _renderItem = ({ item, index }) => {
     return (
       <View style={styles.slide}>
         <Image 
@@ -51,17 +51,20 @@ const PlantCarousel = ({ data = PLANTS_DATA }) => {
     <View style={styles.container}>
       <Carousel
         ref={carouselRef}
-        data={data}
-        renderItem={renderItem}
+        data={PLANTS_DATA}
+        renderItem={_renderItem}
         sliderWidth={screenWidth}
         itemWidth={screenWidth - 60}
-        layoutCardOffset={9}
-        inactiveSlideShift={0}
-        useScrollView={true}
-        autoplay={true}
-        autoplayDelay={1000}
-        autoplayInterval={3000}
+        hasParallaxImages={false}
+        inactiveSlideScale={0.95}
+        inactiveSlideOpacity={0.7}
+        activeSlideAlignment="center"
+        autoplayInterval={5000}
+        autoplayDelay={1500}
+        enableMomentum={false}
+        lockScrollWhileSnapping={true}
         loop={true}
+        autoplay={true}
       />
     </View>
   );
@@ -69,8 +72,9 @@ const PlantCarousel = ({ data = PLANTS_DATA }) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    height: screenWidth - 60,
     paddingTop: 20,
+    marginBottom: 50
   },
   slide: {
     width: screenWidth - 60,
