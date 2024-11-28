@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, TextInput, FlatList, Image, Modal, Button } from 'react-native';
 
 const recipes = [
-  { id: 1, name: 'Recette 1', image: 'image1.jpg', category: 'Maladie', description: 'Description détaillée de la recette 1' },
-  { id: 2, name: 'Recette 2', image: 'image2.png', category: 'Beauté', description: 'Description détaillée de la recette 2' },
-  { id: 3, name: 'Recette 3', image: 'image3.jpg', category: 'Bien-être', description: 'Description détaillée de la recette 3' },
-  { id: 4, name: 'Recette 4', image: 'image4.jpg', category: 'Relaxation', description: 'Description détaillée de la recette 4' },
+  { id: 1, name: 'Recette 1', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFWvhopJy3uECB10Z1cDYDQG5fX6MMaiFv_Q&s', category: 'Maladie', description: 'Description détaillée de la recette 1' },
+  { id: 2, name: 'Recette 2', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQO4nzyRhFY2ckkeVpsX8d4ur5pRXglLACHLQ&s', category: 'Beauté', description: 'Dans un blender versez 2 cuillères à soupe de gel d’aloe vera, 250 ml d’eau, 1/2 jus de citron et un peu de miel (j’ajoute une petite cuillère à café, c’est selon votre goût). Mixez jusqu’à obtenir un jus homogène.' },
+  { id: 3, name: 'Recette 3', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSs3SUForeDP-HZePDb2559nnfNVzF7EWVRbA&s', category: 'Bien-être', description: 'Description détaillée de la recette 3' },
+  { id: 4, name: 'Recette 4', image: 'https://encrypted-tbn0.gstatic.com/images?  q=tbn:ANd9GcSs3SUForeDP-HZePDb2559nnfNVzF7EWVRbA&s', category: 'Relaxation', description: 'Description détaillée de la recette 4' },
 ];
 
 export default function MedicinalRecipesApp() {
@@ -21,6 +21,10 @@ export default function MedicinalRecipesApp() {
 
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const handleCategoryChange = (event) => {
+    setSelectedCategory(event.target.value);
   };
 
   const filteredRecipes = recipes.filter((recipe) =>
