@@ -264,6 +264,7 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   title: {
+    fontFamily: 'Belleza',
     fontSize: 24,
     fontWeight: 'bold',
     color: '#2c3e50',

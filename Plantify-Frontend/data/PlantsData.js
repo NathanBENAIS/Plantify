@@ -36,7 +36,7 @@ export const PLANTS_DATA = [
       description: 'L’Aloe Vera est une plante succulente prisée pour ses propriétés médicinales et cosmétiques. Sa sève gélatineuse est utilisée depuis des siècles pour apaiser et soigner divers maux.',
       sunshine: 'Lumière indirecte ou soleil doux',
       difficulty: 'Facile',
-      image: 'https://images.pexels.com/photos/7015871/pexels-photo-7015871.jpeg',
+      image: 'https://img.freepik.com/premium-photo/aloe-vera-leaf-hd-stock-photographic-image-with-drops-water-gel-herbal-medecine_820616-1419.jpg',
       position: [34.0522, -118.2437],
       location: 'Jardin botanique de Los Angeles',
       characteristics: {
@@ -66,7 +66,7 @@ export const PLANTS_DATA = [
       description: 'La lavande est une plante aromatique emblématique des régions méditerranéennes, connue pour son parfum relaxant et ses nombreuses vertus thérapeutiques.',
       sunshine: 'Plein soleil',
       difficulty: 'Facile',
-      image: 'https://images.pexels.com/photos/618833/pexels-photo-618833.jpeg',
+      image: 'https://www.creativefabrica.com/wp-content/uploads/2022/12/16/Lavender-Photography-HDR-HD-8K-4K-1080p-Sharp-Focus-55mm-52729637-1.png',
       position: [43.9493, 5.7727],
       location: 'Plateau de Valensole, France',
       characteristics: {
@@ -96,7 +96,7 @@ export const PLANTS_DATA = [
       description: 'La menthe est une plante vivace appréciée pour sa fraîcheur et son arôme revigorant. Elle est largement utilisée en cuisine et en médecine traditionnelle.',
       sunshine: 'Mi-ombre',
       difficulty: 'Facile',
-      image: 'https://images.pexels.com/photos/1024419/pexels-photo-1024419.jpeg',
+      image: 'https://www.shutterstock.com/shutterstock/videos/3445557255/thumb/1.jpg',
       position: [41.9028, 12.4964],
       location: 'Villa d\'Este, Rome',
       characteristics: {
@@ -126,7 +126,7 @@ export const PLANTS_DATA = [
       description: 'La camomille est une plante douce et apaisante, souvent utilisée en infusion pour ses propriétés relaxantes et digestives.',
       sunshine: 'Plein soleil',
       difficulty: 'Facile',
-      image: 'https://images.pexels.com/photos/169538/pexels-photo-169538.jpeg',
+      image: 'https://img.freepik.com/photos-premium/macro-champ-camomille_97070-864.jpg',
       position: [52.5200, 13.4050],
       location: 'Berlin Botanical Gardens',
       characteristics: {
@@ -156,7 +156,7 @@ export const PLANTS_DATA = [
       description: 'La fougère est une plante luxuriante qui évoque une ambiance tropicale. Ses frondes délicates apportent une touche de fraîcheur et d’élégance dans les espaces ombragés.',
       sunshine: 'Ombre ou lumière indirecte',
       difficulty: 'Modérée',
-      image: 'https://images.pexels.com/photos/1964869/pexels-photo-1964869.jpeg',
+      image: 'https://media.istockphoto.com/id/655052762/fr/photo/vert-foug%C3%A8re.jpg?s=612x612&w=0&k=20&c=OWUCTCq4x639Kgb6DsALpncGulRPB3DgFmBf7zMPGlg=',
       position: [48.8417, 2.3519],
       location: 'Parc Montsouris',
       characteristics: {
@@ -186,7 +186,7 @@ export const PLANTS_DATA = [
       description: 'L’orchidée est une fleur exotique et élégante, très appréciée pour ses couleurs vibrantes et sa beauté unique. Elle symbolise la beauté et l’élégance.',
       sunshine: 'Lumière indirecte',
       difficulty: 'Difficile',
-      image: 'https://images.pexels.com/photos/1415807/orchid-flower-beautiful-flower-1415807.jpeg',
+      image: 'https://cdn.pixabay.com/photo/2023/02/04/21/32/flowers-7768218_640.jpg',
       position: [48.8599, 2.3073],
       location: 'Jardin des Serres d’Auteuil',
       characteristics: {
@@ -216,7 +216,7 @@ export const PLANTS_DATA = [
       description: 'Le bambou est une plante robuste et élégante, idéale pour créer des haies ou décorer les jardins zen. Sa croissance rapide en fait une plante unique.',
       sunshine: 'Mi-ombre',
       difficulty: 'Modérée',
-      image: 'https://images.pexels.com/photos/158028/bellingrath-gardens-alabama-landscape-scenic-158028.jpeg',
+      image: 'https://png.pngtree.com/background/20230513/original/pngtree-close-up-shot-of-a-bamboo-forest-picture-image_2507777.jpg',
       position: [48.8673, 2.3700],
       location: 'Parc des Buttes-Chaumont',
       characteristics: {
@@ -246,7 +246,7 @@ export const PLANTS_DATA = [
       description: 'Symbole du printemps, la tulipe est une fleur éclatante aux multiples couleurs qui égaye les jardins avec sa beauté intemporelle.',
       sunshine: 'Plein soleil',
       difficulty: 'Modérée',
-      image: 'https://images.pexels.com/photos/68178/tulips-flowers-garden-colorful-68178.jpeg',
+      image: 'https://png.pngtree.com/thumb_back/fh260/background/20230724/pngtree-tv-wallpaper-pink-tulips-wallpapers-image_10176785.jpg',
       position: [48.8539, 2.2944],
       location: 'Champ de Mars',
       characteristics: {
@@ -276,7 +276,7 @@ export const PLANTS_DATA = [
       description: 'Avec ses grandes fleurs parfumées, le lys incarne l’élégance et la pureté. Il est parfait pour décorer les jardins et les intérieurs.',
       sunshine: 'Mi-ombre',
       difficulty: 'Modérée',
-      image: 'https://images.pexels.com/photos/615350/lily-flower-plant-garden-615350.jpeg',
+      image: 'https://media.istockphoto.com/id/105813631/fr/photo/lys-blanc-dans-un-jardin.jpg?s=612x612&w=0&k=20&c=Vcp397EmXefWLiG1wp43KWFbgTTIwpGPf21BL-XCimY=',
       position: [48.8662, 2.3182],
       location: 'Parc Monceau',
       characteristics: {
@@ -306,7 +306,7 @@ export const PLANTS_DATA = [
       description: 'L’hortensia est un arbuste florissant dont les couleurs varient selon le pH du sol, allant du bleu au rose.',
       sunshine: 'Mi-ombre',
       difficulty: 'Modérée',
-      image: 'https://images.pexels.com/photos/56866/garden-rose-red-pink-56866.jpeg',
+      image: 'https://img.freepik.com/photos-premium/fleurs-hortensia-bleu-bouchent_196038-693.jpg',
       position: [48.8461, 2.2738],
       location: 'Parc André Citroën',
       characteristics: {

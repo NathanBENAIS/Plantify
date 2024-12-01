@@ -1,15 +1,20 @@
 import React from "react";
-import { ScrollView, View, StyleSheet, Text } from "react-native";
-import { Ionicons } from '@expo/vector-icons';
+import { ScrollView, View, StyleSheet, Text, Image } from "react-native";
 import PlantScanButtons from "../components/PlantScanButtons";
 import PlantCarousel from "../components/PlantCarousel";
 
+
 export default function Home({ navigation }) {
+
+
   return (
     <ScrollView style={styles.scrollView} contentContainerStyle={styles.container}>
       <View style={styles.header}>
         <View style={styles.logoContainer}>
-          <Ionicons name="leaf" size={40} color="#b4d8b2" />
+          <Image 
+            source={require('../assets/logo.png')}
+            style={styles.logo}
+          />
           <Text style={styles.brandName}>Plantify</Text>
         </View>
         <Text style={styles.tagline}>Explorez le monde des plantes</Text>
@@ -48,16 +53,22 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginBottom: 5,
   },
+  logo: {
+    width: 70,
+    height: 70,
+    resizeMode: 'contain',
+  },
   brandName: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    color: '#b4d8b2',
-    marginLeft: 10,
+    fontFamily: 'Belleza',
+    fontSize: 45,
+    fontStyle:'normal',
+    color: '#539211',
   },
   tagline: {
+    fontFamily: 'Belleza',
     fontSize: 16,
     color: '#666',
-    marginTop: 5,
+    marginTop: 7,
   },
   carouselContainer: {
     width: '100%',

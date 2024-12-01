@@ -4,72 +4,27 @@ import {
   Text, 
   StyleSheet, 
   ScrollView, 
-  Image,
-  TouchableOpacity
+  Image, 
+  TouchableOpacity 
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 export default function DetailProduct({ route, navigation }) {
   const { plant } = route.params;
 
-  const renderCharacteristicsList = (items) => {
+  const renderList = (items) => {
     if (!items || items.length === 0) return null;
-    return (
-      <View style={styles.listContainer}>
-        {items.map((item, index) => (
-          <Text key={index} style={styles.listItem}>• {item}</Text>
-        ))}
-      </View>
-    );
+    return items.map((item, index) => (
+      <Text key={index} style={styles.listItem}>• {item}</Text>
+    ));
   };
-
-  const renderTherapeuticUses = () => {
-    if (!plant.characteristics?.therapeuticUses) return null;
-    return (
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Utilisations thérapeutiques</Text>
-        {renderCharacteristicsList(plant.characteristics.therapeuticUses)}
-      </View>
-    );
-  };
-
-  const renderTraditionalUses = () => {
-    if (!plant.traditionalUses) return null;
-    return (
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Utilisations traditionnelles</Text>
-        {Object.entries(plant.traditionalUses).map(([key, value]) => (
-          <View key={key} style={styles.traditionalUseItem}>
-            <Text style={styles.traditionalUseTitle}>{key.charAt(0).toUpperCase() + key.slice(1)}</Text>
-            <Text style={styles.traditionalUseText}>{value}</Text>
-          </View>
-        ))}
-      </View>
-    );
-  };
-
-  const renderWellBeing = () => {
-    if (!plant.wellBeing) return null;
-    return (
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Bien-être</Text>
-        {Object.entries(plant.wellBeing).map(([key, value]) => (
-          <View key={key} style={styles.wellBeingItem}>
-            <Text style={styles.wellBeingTitle}>{key.charAt(0).toUpperCase() + key.slice(1)}</Text>
-            <Text style={styles.wellBeingText}>{value}</Text>
-          </View>
-        ))}
-      </View>
-    );
-  };
-
 
   const handleGoBack = () => {
     try {
       navigation.goBack();
-      // En cas de problème, on peut ajouter une solution de repli
+  
       if (!navigation.canGoBack()) {
-        navigation.navigate('Search'); // Remplacez 'Home' par le nom de votre écran principal
+        navigation.navigate('Search');
       }
     } catch (error) {
       // Pour le débogage
@@ -79,113 +34,169 @@ export default function DetailProduct({ route, navigation }) {
 
   return (
     <ScrollView style={styles.container}>
+      {/* Header */}
       <View style={styles.header}>
-      <TouchableOpacity 
-          style={styles.backButton}
-          onPress={handleGoBack}
-          activeOpacity={0.7} // Ajout d'un feedback visuel
-        >
-          <Ionicons name="arrow-back" size={24} color="#6E1C40" />
+        <TouchableOpacity onPress={handleGoBack} style={styles.backButton}>
+          <Ionicons name="arrow-back" size={24} color="#1A3B0A" />
         </TouchableOpacity>
+        <Text style={styles.headerTitle}>Détails de la plante</Text>
       </View>
 
-      <View style={styles.mainInfo}>
-        <Text style={styles.plantName}>{plant.name}</Text>
-        <Text style={styles.scientificName}>{plant.scientificName}</Text>
-      </View>
-
-      <View style={styles.imageContainer}>
-        <Image
-          source={{ uri: plant.image }}
-          style={styles.image}
-          resizeMode="cover"
-        />
-      </View>
-
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Description</Text>
-        <Text style={styles.descriptionText}>{plant.description}</Text>
-      </View>
-
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Caractéristiques</Text>
-        
-        <View style={styles.careItem}>
-          <Ionicons name="sunny" size={24} color="#6E1C40" />
-          <View style={styles.careTextContainer}>
-            <Text style={styles.careTitle}>Ensoleillement</Text>
-            <Text style={styles.careText}>{plant.sunshine}</Text>
-          </View>
+      <View style={styles.content}>
+        {/* Plant Information */}
+        <View style={styles.plantInfo}>
+          <Text style={styles.plantName}>{plant.name}</Text>
+          <Text style={styles.scientificName}>{plant.scientificName}</Text>
         </View>
 
-        <View style={styles.careItem}>
-          <Ionicons name="leaf" size={24} color="#6E1C40" />
-          <View style={styles.careTextContainer}>
-            <Text style={styles.careTitle}>Niveau de difficulté</Text>
-            <Text style={styles.careText}>{plant.difficulty}</Text>
-          </View>
+        {/* Main Image */}
+        <View style={styles.imageContainer}>
+          <Image 
+            source={{ uri: plant.image }} 
+            style={styles.image} 
+            resizeMode="cover" 
+          />
         </View>
 
-        {plant.characteristics?.fragranceEffect && (
-          <View style={styles.careItem}>
-            <Ionicons name="flower" size={24} color="#6E1C40" />
-            <View style={styles.careTextContainer}>
-              <Text style={styles.careTitle}>Effet olfactif</Text>
-              <Text style={styles.careText}>{plant.characteristics.fragranceEffect}</Text>
+        {/* Description Section */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Description</Text>
+          <Text style={styles.sectionText}>{plant.description}</Text>
+        </View>
+
+        {/* Characteristics Section */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Caractéristiques</Text>
+          
+          <View style={styles.characteristicGrid}>
+            <View style={styles.characteristicItem}>
+              <View style={styles.iconContainer}>
+                <Ionicons name="sunny" size={20} color="#1A3B0A" />
+              </View>
+              <View style={styles.characteristicContent}>
+                <Text style={styles.characteristicLabel}>Ensoleillement</Text>
+                <Text style={styles.characteristicValue}>{plant.sunshine}</Text>
+              </View>
             </View>
+
+            <View style={styles.characteristicItem}>
+              <View style={styles.iconContainer}>
+                <Ionicons name="leaf" size={20} color="#1A3B0A" />
+              </View>
+              <View style={styles.characteristicContent}>
+                <Text style={styles.characteristicLabel}>Difficulté</Text>
+                <Text style={styles.characteristicValue}>{plant.difficulty}</Text>
+              </View>
+            </View>
+
+            {plant.characteristics?.fragranceEffect && (
+              <View style={styles.characteristicItem}>
+                <View style={styles.iconContainer}>
+                  <Ionicons name="flower" size={20} color="#1A3B0A" />
+                </View>
+                <View style={styles.characteristicContent}>
+                  <Text style={styles.characteristicLabel}>Effet olfactif</Text>
+                  <Text style={styles.characteristicValue}>
+                    {plant.characteristics.fragranceEffect}
+                  </Text>
+                </View>
+              </View>
+            )}
+          </View>
+        </View>
+
+        {/* Composition Section */}
+        {plant.characteristics && (
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Composition</Text>
+            {plant.characteristics.minerals?.length > 0 && (
+              <View style={styles.compositionGroup}>
+                <Text style={styles.compositionTitle}>Minéraux</Text>
+                {renderList(plant.characteristics.minerals)}
+              </View>
+            )}
+            {plant.characteristics.vitamins?.length > 0 && (
+              <View style={styles.compositionGroup}>
+                <Text style={styles.compositionTitle}>Vitamines</Text>
+                {renderList(plant.characteristics.vitamins)}
+              </View>
+            )}
+            {plant.characteristics.antioxidants?.length > 0 && (
+              <View style={styles.compositionGroup}>
+                <Text style={styles.compositionTitle}>Antioxydants</Text>
+                {renderList(plant.characteristics.antioxidants)}
+              </View>
+            )}
+          </View>
+        )}
+
+        {/* Therapeutic Uses */}
+        {plant.characteristics?.therapeuticUses && (
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Utilisations thérapeutiques</Text>
+            {renderList(plant.characteristics.therapeuticUses)}
+          </View>
+        )}
+
+        {/* Traditional Uses */}
+        {plant.traditionalUses && (
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Utilisations traditionnelles</Text>
+            {Object.entries(plant.traditionalUses).map(([key, value]) => (
+              <View key={key} style={styles.traditionalUseItem}>
+                <Text style={styles.traditionalUseTitle}>
+                  {key.charAt(0).toUpperCase() + key.slice(1)}
+                </Text>
+                <Text style={styles.sectionText}>{value}</Text>
+              </View>
+            ))}
+          </View>
+        )}
+ {/* Bien-être - Nouvelle section */}
+ {plant.wellBeing && (
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Bien-être</Text>
+            {Object.entries(plant.wellBeing).map(([key, value]) => (
+              <View key={key} style={styles.wellBeingItem}>
+                <Text style={styles.wellBeingTitle}>
+                  {key.charAt(0).toUpperCase() + key.slice(1)}
+                </Text>
+                <Text style={styles.useText}>{value}</Text>
+              </View>
+            ))}
+          </View>
+        )}
+        {/* Location Section */}
+        <View style={styles.section}>
+          <View style={styles.sectionTitleContainer}>
+            <Ionicons name="location" size={20} color="#1A3B0A" />
+            <Text style={[styles.sectionTitle, styles.titleWithIcon]}>
+              Localisation
+            </Text>
+          </View>
+          <Text style={styles.sectionText}>{plant.location}</Text>
+        </View>
+     {/* Signification culturelle */}
+     {plant.culturalSignificance && (
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Signification culturelle</Text>
+            <Text style={styles.sectionText}>{plant.culturalSignificance}</Text>
+          </View>
+        )}
+
+        {/* Fun Fact Section */}
+        {plant.funFact && (
+          <View style={styles.section}>
+            <View style={styles.sectionTitleContainer}>
+              <Ionicons name="information-circle" size={20} color="#1A3B0A" />
+              <Text style={[styles.sectionTitle, styles.titleWithIcon]}>
+                Le saviez-vous ?
+              </Text>
+            </View>
+            <Text style={[styles.sectionText, styles.italicText]}>{plant.funFact}</Text>
           </View>
         )}
       </View>
-
-      {plant.characteristics && (
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Composition</Text>
-          
-          {plant.characteristics.minerals && plant.characteristics.minerals.length > 0 && (
-            <View style={styles.compositionGroup}>
-              <Text style={styles.compositionTitle}>Minéraux</Text>
-              {renderCharacteristicsList(plant.characteristics.minerals)}
-            </View>
-          )}
-          
-          {plant.characteristics.vitamins && plant.characteristics.vitamins.length > 0 && (
-            <View style={styles.compositionGroup}>
-              <Text style={styles.compositionTitle}>Vitamines</Text>
-              {renderCharacteristicsList(plant.characteristics.vitamins)}
-            </View>
-          )}
-          
-          {plant.characteristics.antioxidants && plant.characteristics.antioxidants.length > 0 && (
-            <View style={styles.compositionGroup}>
-              <Text style={styles.compositionTitle}>Antioxydants</Text>
-              {renderCharacteristicsList(plant.characteristics.antioxidants)}
-            </View>
-          )}
-        </View>
-      )}
-
-      {renderTherapeuticUses()}
-      {renderTraditionalUses()}
-      {renderWellBeing()}
-
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Localisation</Text>
-        <Text style={styles.locationText}>{plant.location}</Text>
-      </View>
-
-      {plant.culturalSignificance && (
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Signification culturelle</Text>
-          <Text style={styles.culturalText}>{plant.culturalSignificance}</Text>
-        </View>
-      )}
-
-      {plant.funFact && (
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Le saviez-vous ?</Text>
-          <Text style={styles.funFactText}>{plant.funFact}</Text>
-        </View>
-      )}
     </ScrollView>
   );
 }
@@ -193,135 +204,154 @@ export default function DetailProduct({ route, navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#F5F5F5',
   },
   header: {
-    paddingTop: 50,
-    paddingHorizontal: 20,
-    paddingBottom: 20,
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 16,
+    paddingVertical: 20,
+    backgroundColor: '#B4D8B2',
+    borderBottomWidth: 1,
+    borderBottomColor: '#E5E5E5',
+
   },
   backButton: {
-    width: 40,
-    height: 40,
-    justifyContent: 'center',
-    alignItems: 'center',
+    marginRight: 16,
   },
-  mainInfo: {
-    padding: 20,
+  headerTitle: {
+    fontFamily: 'Belleza',
+    fontSize: 22,
+    fontWeight: '700',
+    color: '#1A3B0A',
+  },
+  content: {
+    padding: 16,
+  },
+  plantInfo: {
+    marginBottom: 16,
   },
   plantName: {
-    fontSize: 28,
+    fontSize: 24,
     fontWeight: 'bold',
-    color: '#2c3e50',
-    marginBottom: 5,
+    color: '#1A3B0A',
+    marginBottom: 4,
   },
   scientificName: {
-    fontSize: 18,
+    fontSize: 16,
     fontStyle: 'italic',
-    color: '#7f8c8d',
+    color: '#6B7280',
   },
   imageContainer: {
-    width: '100%',
-    height: 300,
-    marginBottom: 20,
+    marginBottom: 16,
+    borderRadius: 8,
+    overflow: 'hidden',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
   },
   image: {
     width: '100%',
-    height: '100%',
+    height: 200,
   },
   section: {
-    padding: 20,
-    borderTopWidth: 1,
-    borderTopColor: '#f0f0f0',
+    marginBottom: 16,
+    padding: 16,
+    backgroundColor: '#FFFFFF',
+    borderRadius: 8,
+    shadowColor: '#000',
+    shadowOpacity: 0.1,
+    shadowOffset: { width: 0, height: 4 },
+    shadowRadius: 4,
+    elevation: 2,
   },
   sectionTitle: {
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: 'bold',
-    color: '#2c3e50',
-    marginBottom: 15,
+    color: '#1A3B0A',
+    marginBottom: 12,
   },
-  descriptionText: {
-    fontSize: 16,
-    lineHeight: 24,
-    color: '#34495e',
-  },
-  careItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 15,
-  },
-  careTextContainer: {
-    marginLeft: 15,
-    flex: 1,
-  },
-  careTitle: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: '#2c3e50',
-  },
-  careText: {
+  sectionText: {
     fontSize: 14,
-    color: '#7f8c8d',
-  },
-  listContainer: {
-    marginLeft: 10,
-  },
-  listItem: {
-    fontSize: 14,
-    color: '#34495e',
-    marginBottom: 5,
+    color: '#4B5563',
     lineHeight: 20,
   },
+  characteristicGrid: {
+    gap: 12,
+  },
+  characteristicItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 8,
+  },
+  iconContainer: {
+    width: 32,
+    height: 32,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#B4D8B2',
+    borderRadius: 16,
+    marginRight: 12,
+  },
+  characteristicContent: {
+    flex: 1,
+  },
+  characteristicLabel: {
+    fontSize: 14,
+    fontWeight: '500',
+    color: '#1A3B0A',
+    marginBottom: 2,
+  },
+  characteristicValue: {
+    fontSize: 14,
+    color: '#4B5563',
+  },
   compositionGroup: {
-    marginBottom: 15,
+    marginBottom: 12,
   },
   compositionTitle: {
     fontSize: 16,
-    fontWeight: '600',
-    color: '#2c3e50',
-    marginBottom: 5,
+    fontWeight: '500',
+    color: '#1A3B0A',
+    marginBottom: 8,
+  },
+  listItem: {
+    fontSize: 14,
+    color: '#4B5563',
+    marginBottom: 4,
+    paddingLeft: 8,
   },
   traditionalUseItem: {
-    marginBottom: 10,
+    marginBottom: 12,
   },
   traditionalUseTitle: {
     fontSize: 16,
-    fontWeight: '600',
-    color: '#2c3e50',
-    marginBottom: 5,
+    fontWeight: '500',
+    color: '#1A3B0A',
+    marginBottom: 4,
   },
-  traditionalUseText: {
-    fontSize: 14,
-    color: '#34495e',
-    lineHeight: 20,
+  sectionTitleContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 12,
   },
+  titleWithIcon: {
+    marginLeft: 8,
+    marginBottom: 0,
+  },
+  italicText: {
+    fontStyle: 'italic',
+  },
+
   wellBeingItem: {
-    marginBottom: 10,
+    marginBottom: 12,
   },
   wellBeingTitle: {
     fontSize: 16,
-    fontWeight: '600',
-    color: '#2c3e50',
-    marginBottom: 5,
+    fontWeight: '500',
+    color: '#1A3B0A',
+    marginBottom: 4,
   },
-  wellBeingText: {
-    fontSize: 14,
-    color: '#34495e',
-    lineHeight: 20,
-  },
-  locationText: {
-    fontSize: 14,
-    color: '#34495e',
-  },
-  culturalText: {
-    fontSize: 14,
-    color: '#34495e',
-    lineHeight: 20,
-  },
-  funFactText: {
-    fontSize: 14,
-    color: '#34495e',
-    fontStyle: 'italic',
-    lineHeight: 20,
-  }
 });

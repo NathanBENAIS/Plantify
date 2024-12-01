@@ -101,7 +101,8 @@ const PlantsMap = ({ plants }) => {
         </View>
       </View>
     );
-  } else {
+  }  
+  else {
     const { WebView } = require('react-native-webview');
     const [selectedPlant, setSelectedPlant] = useState(null);
     const webViewRef = useRef(null);
@@ -109,60 +110,140 @@ const PlantsMap = ({ plants }) => {
     const handleCardPress = (plant) => {
       setSelectedPlant(plant);
       const script = `
-        const currentZoom = map.getZoom();
-        map.flyTo([${plant.position[0]}, ${plant.position[1]}], currentZoom, {
-          duration: 1.5
-        });
-        markers.forEach(marker => {
-          marker.setStyle({
-            fillColor: marker.plantId === '${plant.id}' ? '#ff4757' : '#3388ff'
-          });
-        });
+        (function() {
+          try {
+            if (typeof map !== 'undefined' && map) {
+              // Animation de zoom avec flyTo
+              map.flyTo([${plant.position[0]}, ${plant.position[1]}], 15, {
+                duration: 1.5,
+                easeLinearity: 0.25
+              });
+              
+              // Mise à jour des marqueurs
+              if (markers && markers.length) {
+                markers.forEach(marker => {
+                  if (marker && marker.setStyle) {
+                    const isSelected = marker.plantId === '${plant.id}';
+                    marker.setStyle({
+                      fillColor: isSelected ? '#ff4757' : '#3388ff',
+                      radius: isSelected ? 30 : 20,
+                      fillOpacity: isSelected ? 0.8 : 0.7
+                    });
+                    
+                    if (isSelected) {
+                      setTimeout(() => marker.openPopup(), 1500); // Ouvre le popup après l'animation
+                    } else {
+                      marker.closePopup();
+                    }
+                  }
+                });
+              }
+            }
+          } catch (error) {
+            console.error('Error in handleCardPress:', error);
+          }
+          true;
+        })();
       `;
-      webViewRef.current.injectJavaScript(script);
+      webViewRef.current?.injectJavaScript(script);
     };
     
     const htmlContent = `
       <!DOCTYPE html>
       <html>
         <head>
-          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
           <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
           <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
           <style>
-            body { margin: 0; padding: 0; }
-            #map { height: 100%; width: 100%; }
-            .leaflet-control-attribution { display: none !important; }
+            html, body { 
+              margin: 0; 
+              padding: 0;
+              width: 100%;
+              height: 100%;
+              overflow: hidden;
+              position: fixed;
+            }
+            #map { 
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              background: #f8f9fa;
+            }
+            .leaflet-control-attribution { 
+              display: none !important; 
+            }
+            /* Animation des marqueurs */
+            .leaflet-marker-icon,
+            .leaflet-marker-shadow {
+              transition: transform 0.3s ease-out;
+            }
           </style>
         </head>
         <body>
           <div id="map"></div>
           <script>
-            var map = L.map('map', {
-              attributionControl: false
-            }).setView([48.8566, 2.3522], 13);
-            
+            var map;
             var markers = [];
             
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-              maxZoom: 19
-            }).addTo(map);
+            document.addEventListener('DOMContentLoaded', function() {
+              try {
+                // Initialisation de la carte avec des options améliorées
+                map = L.map('map', {
+                  attributionControl: false,
+                  zoomControl: true,
+                  dragging: true,
+                  tap: false,
+                  bounceAtZoomLimits: false,
+                  touchZoom: 'center',
+                  zoomAnimation: true
+                }).setView([48.8566, 2.3522], 13);
+                
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                  maxZoom: 19,
+                  minZoom: 4
+                }).addTo(map);
 
-            const plants = ${JSON.stringify(plants)};
-            
-            plants.forEach(function(plant) {
-              const marker = L.circleMarker(plant.position, {
-                radius: 40,
-                fillColor: "#3388ff",
-                fillOpacity: 0.7,
-                color: "#ffffff",
-                weight: 4
-              })
-                .bindPopup('<b>' + plant.name + '</b><br>' + plant.location)
-                .addTo(map);
-              
-              marker.plantId = plant.id;
-              markers.push(marker);
+                const plants = ${JSON.stringify(plants)};
+                
+                plants.forEach(function(plant) {
+                  const marker = L.circleMarker(plant.position, {
+                    radius: 20,
+                    fillColor: "#3388ff",
+                    fillOpacity: 0.7,
+                    color: "#ffffff",
+                    weight: 2,
+                    className: 'animated-marker'
+                  });
+                  
+                  marker.plantId = plant.id;
+                  
+                  // Popup avec style amélioré
+                  marker.bindPopup(
+                    '<div style="text-align: center;">' +
+                    '<b style="font-size: 14px;">' + plant.name + '</b><br>' +
+                    '<span style="font-size: 12px;">' + plant.location + '</span>' +
+                    '</div>', 
+                    { 
+                      closeButton: false,
+                      className: 'custom-popup'
+                    }
+                  );
+                  
+                  marker.addTo(map);
+                  markers.push(marker);
+                });
+
+                // Fix pour le rendu initial
+                setTimeout(function() {
+                  map.invalidateSize();
+                }, 250);
+
+              } catch (e) {
+                console.error('Map initialization error:', e);
+              }
             });
           </script>
         </body>
@@ -178,6 +259,12 @@ const PlantsMap = ({ plants }) => {
             source={{ html: htmlContent }}
             javaScriptEnabled={true}
             domStorageEnabled={true}
+            onError={(syntheticEvent) => {
+              const { nativeEvent } = syntheticEvent;
+              console.warn('WebView error: ', nativeEvent);
+            }}
+            scrollEnabled={false}
+            bounces={false}
           />
         </View>
         <View style={styles.cardsContainer}>
@@ -195,7 +282,6 @@ const PlantsMap = ({ plants }) => {
     );
   }
 };
-
 const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,

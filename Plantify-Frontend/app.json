@@ -3,6 +3,9 @@
     "name": "Plantify-Frontend",
     "slug": "Plantify-Frontend",
     "version": "1.0.0",
+    "fonts": {
+      "Belleza": "./assets/fonts/Belleza-Regular.ttf"
+    },
     "plugins": [
       [
         "expo-image-picker",
@@ -15,13 +18,18 @@
         {
           "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera."
         }
-      ]
+      ],
+      "expo-font"
     ],
     "ios": {
       "supportsTablet": true
     },
     "android": {
-      "permissions": ["CAMERA", "READ_EXTERNAL_STORAGE", "WRITE_EXTERNAL_STORAGE"]
+      "permissions": [
+        "CAMERA",
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
