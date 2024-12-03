@@ -322,6 +322,158 @@ export const PLANTS_DATA = [
         gardens: 'Favorise un charme rustique ou sophistiqué.'
       },
       culturalSignificance: 'Considéré comme un symbole de gratitude et de beauté.'
-    },    
+    },   
+
+      {
+        id: '12',
+        name: 'Purple Dome',
+        scientificName: 'Aster novae-angliae',
+        description: 'Le Purple Dome est une variété d\'aster compact et robuste, particulièrement apprécié pour sa floraison abondante de couleur violette intense qui illumine les jardins en fin de saison.',
+        sunshine: 'Plein soleil',
+        difficulty: 'Facile',
+        image: 'https://gardengoodsdirect.com/cdn/shop/files/aster-woods-purple-29777631739946_grande.jpg?v=1695417540',
+        position: [48.8566, 2.3522],
+        location: 'Jardin des Plantes, Paris',
+        characteristics: {
+          minerals: ['Fer', 'Calcium'],
+          vitamins: [],
+          antioxidants: ['Flavonoïdes'],
+          therapeuticUses: ['Attire les pollinisateurs', 'Améliore la biodiversité du jardin'],
+          fragranceEffect: 'Délicat et herbacé'
+        },
+        traditionalUses: {
+          gardens: 'Excellent pour les massifs et bordures automnales',
+          bouquets: 'Apprécié en fleurs coupées pour sa longue tenue',
+          pollinator: 'Attire les papillons et les abeilles'
+        },
+        culturalSignificance: 'Symbolise l\'élégance et la persévérance dans le langage des fleurs',
+        wellBeing: {
+          gardenHealth: 'Contribue à la biodiversité du jardin',
+          aesthetics: 'Apporte une touche de couleur vibrante en fin de saison',
+          wildlife: 'Soutient la faune locale, notamment les pollinisateurs'
+        },
+        funFact: 'Contrairement à beaucoup d\'autres asters, le Purple Dome reste compact et n\'a pas besoin d\'être tuteuré'
+      },
+      {
+        id: '13',
+        name: 'Jonquille',
+        scientificName: 'Narcissus jonquilla',
+        description: 'La jonquille est l\'un des premiers messagers du printemps, avec ses fleurs jaunes éclatantes et parfumées qui émergent dès la fin de l\'hiver.',
+        sunshine: 'Plein soleil à mi-ombre',
+        difficulty: 'Facile',
+        image: 'https://media.istockphoto.com/id/1176574947/fr/photo/fleurs-jaunes-de-jonquille.jpg?s=612x612&w=0&k=20&c=ADY7FnrCfo7mhjD2uKL_DpHkvIhQgtxmt3YselQitQw=',
+        position: [48.8661, 2.3125],
+        location: 'Parc de Bagatelle, Paris',
+        characteristics: {
+          minerals: ['Calcium', 'Potassium'],
+          vitamins: [],
+          antioxidants: [],
+          therapeuticUses: ['Symbole du renouveau printanier'],
+          fragranceEffect: 'Doux et printanier'
+        },
+        traditionalUses: {
+          celebrations: 'Symbole traditionnel du printemps et du renouveau',
+          gardens: 'Excellente pour la naturalisation dans les pelouses',
+          cutFlowers: 'Populaire en bouquets printaniers'
+        },
+        culturalSignificance: 'Représente l\'espoir et le renouveau dans de nombreuses cultures',
+        wellBeing: {
+          moodBoost: 'Les couleurs vives stimulent l\'optimisme',
+          seasonalMarker: 'Annonce l\'arrivée du printemps',
+          fragrance: 'Son parfum délicat évoque la fraîcheur printanière'
+        },
+        funFact: 'Les bulbes de jonquilles contiennent des substances toxiques qui les protègent naturellement des rongeurs'
+      },
+      {
+        id: '14',
+        name: 'Jacinthe',
+        scientificName: 'Hyacinthus orientalis',
+        description: 'La jacinthe est une plante bulbeuse réputée pour ses fleurs parfumées en forme de grappe et sa palette de couleurs variées.',
+        sunshine: 'Plein soleil à mi-ombre',
+        difficulty: 'Modérée',
+        image: 'https://images.ctfassets.net/b85ozb2q358o/95dd345e42affef5d6f6387dcde452fb1be0f9a51863a3fa605a023940ea62b9/9746b55f9623bf93850dffe214848276/quand-comment-planter-bulbes-fleurs-4.jpg',
+        position: [48.8462, 2.3372],
+        location: 'Jardin du Luxembourg, Paris',
+        characteristics: {
+          minerals: ['Phosphore', 'Potassium'],
+          vitamins: [],
+          antioxidants: [],
+          therapeuticUses: ['Aromathérapie naturelle', 'Améliore l\'ambiance'],
+          fragranceEffect: 'Intense et suave'
+        },
+        traditionalUses: {
+          indoor: 'Populaire pour le forçage en intérieur',
+          gardens: 'Création de bordures parfumées',
+          aromatherapy: 'Utilisée pour son parfum apaisant'
+        },
+        culturalSignificance: 'Symbole du printemps et de la renaissance dans la mythologie grecque',
+        wellBeing: {
+          aromatherapy: 'Le parfum aide à la relaxation',
+          seasonal: 'Apporte de la joie pendant la période hivernale',
+          decoration: 'Embellit les espaces intérieurs et extérieurs'
+        },
+        funFact: 'La jacinthe peut être forcée à fleurir en hiver sur un simple vase d\'eau'
+      },
+      {
+        id: '15',
+        name: 'Jasmin jaune',
+        scientificName: 'Jasminum nudiflorum',
+        description: 'Le jasmin d\'hiver est un arbuste grimpant qui fleurit en plein hiver, apportant une touche de couleur dorée quand la plupart des plantes sont en dormance.',
+        sunshine: 'Plein soleil à mi-ombre',
+        difficulty: 'Facile',
+        image: 'https://resize.elle.fr/article/var/plain_site/storage/images/deco/exterieur/jardin/le-jasmin-d-hiver-couleur-et-parfum-en-hiver-4191280/101392595-1-fre-FR/Le-jasmin-d-hiver-couleur-et-parfum-en-hiver.jpg',
+        position: [48.8810, 2.3488],
+        location: 'Parc Monceau, Paris',
+        characteristics: {
+          minerals: ['Fer', 'Magnésium'],
+          vitamins: [],
+          antioxidants: [],
+          therapeuticUses: ['Égaye l\'ambiance hivernale'],
+          fragranceEffect: 'Subtil et doux'
+        },
+        traditionalUses: {
+          landscaping: 'Excellent pour couvrir les murs et treillages',
+          winterGarden: 'Apporte de la couleur en hiver',
+          decoration: 'Utilisé pour les décorations hivernales'
+        },
+        culturalSignificance: 'Symbole de joie et d\'optimisme en période hivernale',
+        wellBeing: {
+          winterCheer: 'Combat la morosité hivernale',
+          gardenInterest: 'Maintient la vie au jardin en hiver',
+          aesthetics: 'Crée des points focaux dorés dans le jardin'
+        },
+        funFact: 'Cette plante peut fleurir même sous la neige, d\'où son surnom de "soleil d\'hiver"'
+      },
+      {
+        id: '16',
+        name: 'Bruyère',
+        scientificName: 'Erica',
+        description: 'La bruyère est une plante rustique qui offre des fleurs colorées pendant l\'hiver, idéale pour les jardins de rocaille et les massifs.',
+        sunshine: 'Plein soleil à mi-ombre',
+        difficulty: 'Modérée',
+        image: 'https://blog.rouepepinieres.com/hs-fs/hubfs/Erica-Eva-gold-bruy%C3%A8re-couvre-sol.jpg?width=1000&height=667&name=Erica-Eva-gold-bruy%C3%A8re-couvre-sol.jpg',
+        position: [48.8232, 2.4365],
+        location: 'Jardin des Serres d\'Auteuil, Paris',
+        characteristics: {
+          minerals: ['Fer', 'Calcium'],
+          vitamins: [],
+          antioxidants: [],
+          therapeuticUses: ['Décorative et couvre-sol'],
+          fragranceEffect: 'Léger et boisé'
+        },
+        traditionalUses: {
+          groundcover: 'Excellent couvre-sol pour zones acides',
+          winterColor: 'Apporte de la couleur en hiver',
+          landscaping: 'Idéal pour les jardins de rocaille'
+        },
+        culturalSignificance: 'Symbolise la solitude et la protection dans le folklore écossais',
+        wellBeing: {
+          lowMaintenance: 'Facile à entretenir une fois établie',
+          yearRound: 'Procure un intérêt visuel toute l\'année',
+          wildlife: 'Attire les abeilles et les papillons'
+        },
+        funFact: 'La bruyère peut survivre dans des conditions extrêmes et pousse naturellement sur les landes et les sols pauvres'
+      },
+     
     
 ];

@@ -26,7 +26,7 @@ export const PLANT_CAROUSEL_DATA = [
   {
     id: '2',
     title: 'Messagère d\'hiver',
-    plantName: 'Jonquille',
+     plantName: 'Jonquille',    
     illustration: 'https://images.ctfassets.net/b85ozb2q358o/a1d2779b3f0fe1988fc557b4fde4b95075f721f445fb7f61795d40c35dde2de8/3dfd28fd9493d177a3e8e2eab7d34e39/quand-comment-planter-bulbes-fleurs-2.jpg',
     season: 'Hiver',
     plantingPeriod: 'Septembre à Novembre',
